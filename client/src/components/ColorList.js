@@ -18,16 +18,18 @@ const ColorList = ({ props, colors, updateColors }) => {
 
   const saveEdit = e => {
     e.preventDefault();
+    // console.log(colorToEdit)
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
-    // axiosWithAuth()
-    // .put(`http://localhost:5000/api/colors/${id}`, updatedMovie)
-    // .then(res => {
-    //     setUpdatedMovie(res.data);
-    //     props.history.push(`/`);
-    //     })
-    // .catch(err => console.log(err.response));
+    axiosWithAuth()
+    .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
+    .then(res => {
+        console.log(res)
+        // setUpdatedMovie(res.data);
+        // props.history.push(`/`);
+        })
+    .catch(err => console.log(err.response));
   };
 
   const deleteColor = color => {
@@ -37,8 +39,8 @@ const ColorList = ({ props, colors, updateColors }) => {
     .delete(`http://localhost:5000/api/colors/${color.id}`)
     .then(res => {
       console.log(res)
-      props.history.push(`/bubble-page`);
-      // setState(res.data)
+      // props.history.push(`/bubble-page`);
+      // updateColors(res.data)
       // console.log(this.props.history.push(`/`))
       })
     .catch(err => console.log(err.response));
